@@ -43,7 +43,6 @@ const inventors = [{
 ];
 
 
-
 const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwing', 'Begin, Manachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Guiron, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Berngman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhart, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Franck', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
 
 
@@ -54,6 +53,7 @@ inventors.forEach(inventor => {
     document.querySelector(".inventors").appendChild(inventorLi);
 })
 
+
 // Affichage de toutes les personnes
 const peopleElt = document.querySelector(".people");
 const peopleList = document.createElement("p");
@@ -62,9 +62,68 @@ for (let i = 0; i < people.length; i++) {
 }
 peopleElt.appendChild(peopleList);
 
+
 // 1. Filter the list of inverstors for those who were born in the 1500's
 
-// 2. Give us an array of the inventors first anf last names
+const bornIn1500 = document.querySelector(".bornIn1500");
+birthDateCheck(inventors, 1500, 1600, bornIn1500);
+
+function birthDateCheck(array, yearMin, yearMax, parentElt) {
+    const checking = array.filter(dateCheck);
+
+    function dateCheck(individual) {
+        return individual.year >= yearMin && individual.year < yearMax;
+    }
+    checking.forEach(index => {
+        const indexValid = document.createElement("li");
+        indexValid.textContent = index.first + " " + index.last + ", born in " + index.year + ", died in " + index.passed;
+        parentElt.appendChild(indexValid);
+    })
+}
+
+// 2. Give us an array of the inventors birth date anf passed date
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 3. Sort the inventors by birthdat, oldest to youngest
 
