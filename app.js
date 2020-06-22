@@ -41,100 +41,67 @@ const inventors = [{
         passed: 1947
     },
 ];
+console.log("Inventors");
+console.table(inventors);
+
 
 
 const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwing', 'Begin, Manachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Guiron, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Berngman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhart, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Franck', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
-
-
-// Affichage de tous les inventeurs
-inventors.forEach(inventor => {
-    const inventorLi = document.createElement("li");
-    inventorLi.textContent = inventor.first + " " + inventor.last + ", born in " + inventor.year + ", died in " + inventor.passed;
-    document.querySelector(".inventors").appendChild(inventorLi);
-})
-
-
-// Affichage de toutes les personnes
-const peopleElt = document.querySelector(".people");
-const peopleList = document.createElement("p");
-for (let i = 0; i < people.length; i++) {
-    peopleList.textContent += people[i] + " - ";
-}
-peopleElt.appendChild(peopleList);
-
-
-// 1. Filter the list of inverstors for those who were born in the 1500's
-
-const bornIn1500 = document.querySelector(".bornIn1500");
-birthDateCheck(inventors, 1500, 1600, bornIn1500);
-
-function birthDateCheck(array, yearMin, yearMax, parentElt) {
-    const checking = array.filter(dateCheck);
-
-    function dateCheck(individual) {
-        return individual.year >= yearMin && individual.year < yearMax;
-    }
-    checking.forEach(index => {
-        const indexValid = document.createElement("li");
-        indexValid.textContent = index.first + " " + index.last + ", born in " + index.year + ", died in " + index.passed;
-        parentElt.appendChild(indexValid);
-    })
-}
-
-// 2. Give us an array of the inventors birth date anf passed date
+console.log("People");
+console.table(people);
 
 
 
+console.log("1. Filter the list of inverstors for those who were born in the 1500's using array.prototype.filter()");
+const fifteen = inventors.filter(index => index.year >= 1500 && index.year < 1600);
+console.table(fifteen);
 
 
 
+console.log("2. Give us an array of the inventors first and last name using array.prototype.map()");
+const fullNames = inventors.map(index => `${index.first} ${index.last}`);
+console.table(fullNames);
 
 
 
+console.log("3. Sort the inventors by birthdate, oldest to youngest using array.prototype.sort()");
+const birthDates = inventors.sort((a, b) => a.year - b.year);
+console.table(birthDates);
 
 
 
+console.log("4. Count how many years did all the inventors live using array.prototype.reduce()");
+const totalYears = inventors.reduce((total, inventor) => {
+    return total + (inventor.passed - inventor.year);
+}, 0);
+console.log(totalYears);
 
 
 
+console.log("5. Sort the inventors by years lived");
+const oldest = inventors.sort((a, b) => (a.passed - a.year) - (b.passed - b.year));
+console.table(oldest);
 
 
 
+console.log("6. Sort the people alphabetically by last name ursing array.prototype.sort()");
+console.table(people.sort((a, b) => {
+    return a - b;
+}));
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 3. Sort the inventors by birthdat, oldest to youngest
-
-// 4. How many years did all the inventors live ?
-
-// 5. Sort the inventors by years lived
-
-// 6. Create a liste of Boulevards in Paris that contains 'de' anywhere in the name :
-// https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
-// 7. Sort the people alphabetically by last name
-
-// 8. Sum up the instances of each of these
 const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'wallk', 'car', 'van', 'car', 'truck', 'pogostick'];
+console.table(data);
+
+
+
+const instance = data.reduce((total, n) => {
+    if (!total[n]) {
+        total[n] = 0;
+    }
+    total[n]++;
+    return total;
+}, {});
+
+console.table(instance);
